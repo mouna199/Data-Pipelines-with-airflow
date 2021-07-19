@@ -39,6 +39,7 @@ class StageToRedshiftOperator(BaseOperator):
                         FROM '{s3_path}'
                         ACCESS_KEY_ID '{access_key}'
                         SECRET_ACCESS_KEY '{secret_key}'
+                        TIMEFORMAT as 'epochmillisecs'
                         REGION 'us-west-2'
                         FORMAT AS JSON '{extra_params}';
                      """.format(table=self.table,
@@ -47,7 +48,6 @@ class StageToRedshiftOperator(BaseOperator):
                                 secret_key=credentials.secret_key,
                                 extra_params = self.extra_params
                                 )
-
         self.log.info('Copy to table')
         redshift_hook.run(copy_query)
         self.log.info("operation is done.")
