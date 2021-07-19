@@ -10,7 +10,7 @@ class SqlQueries:
                 events.sessionid, 
                 events.location, 
                 events.useragent
-                FROM (SELECT TIMESTAMP 'epoch' + ts/1000 * interval '1 second' AS start_time, *
+                FROM (SELECT to_timestamp(to_char(ts, '9999-99-99 99:99:99'),'YYYY-MM-DD HH24:MI:SS') AS start_time, *
             FROM staging_events
             WHERE page='NextSong') events
             LEFT JOIN staging_songs songs

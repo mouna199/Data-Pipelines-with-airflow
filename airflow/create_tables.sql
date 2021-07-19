@@ -27,7 +27,6 @@ CREATE TABLE public.songs (
 	duration numeric(18,0),
 	CONSTRAINT songs_pkey PRIMARY KEY (songid)
 );
-
 CREATE TABLE public.staging_events (
 	artist varchar(256),
 	auth varchar(256),
@@ -44,7 +43,7 @@ CREATE TABLE public.staging_events (
 	sessionid int4,
 	song varchar(256),
 	status int4,
-	ts int8,
+	ts timestamp,
 	useragent varchar(256),
 	userid int4
 );
@@ -83,6 +82,6 @@ CREATE TABLE public.users (
 );
 
 
-
-
+#DROP SCHEMA public CASCADE;
+#CREATE SCHEMA public;
 
